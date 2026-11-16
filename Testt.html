@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clean CSS Column Layout Visualizer</title>
+    <!-- Tailwind CSS for visualizer UI shell -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Dynamic CSS injected into preview canvas -->
+    <style id="stage-dynamic-styles">
+        /* Dynamic Styles Generated Live */
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-100 font-sans min-h-screen flex flex-col antialiased selection:bg-emerald-500 selection:text-slate-950">
+
+    <header class="bg-slate-950/90 backdrop-blur border-b border-slate-800 sticky top-0 z-40 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-400 to-teal-600 text-slate-950 flex items-center justify-center font-black text-base shadow-md shadow-emerald-500/10">
+                    3C
+                </div>
+                <div>
+                    <h1 class="text-base font-bold text-white tracking-tight flex items-center gap-2">
+                        3-Column Layout Studio
+                        <span class="text-[10px] uppercase tracking-wider bg-emerald-500/20 text-emerald-400 font-mono px-2 py-0.5 rounded-md border border-emerald-500/30">Live Sandbox</span>
+                    </h1>
+                    <p class="text-xs text-slate-400">Full-height dividers &amp; hover color inversion visualizer</p>
+                </div>
+            </div>
+
+            <!-- Viewport Switcher Controls -->
+            <div class="flex items-center bg-slate-900/90 p-1 rounded-xl border border-slate-800/80 text-xs font-medium shadow-inner">
+                <button onclick="setViewport('desktop')" id="btn-vp-desktop" class="px-3 py-1.5 rounded-lg bg-emerald-500 text-slate-950 font-semibold shadow-sm transition-all flex items-center gap-1.5">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                    <span>Desktop (100%)</span>
+                </button>
+                <button onclick="setViewport('tablet')" id="btn-vp-tablet" class="px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition-all flex items-center gap-1.5">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+                    <span>Tablet (768px)</span>
+                </button>
+                <button onclick="setViewport('mobile')" id="btn-vp-mobile" class="px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition-all flex items-center gap-1.5">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+                    <span>Mobile (375px)</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+
+        <!-- Stage Canvas Container -->
+        <section class="bg-slate-950 rounded-2xl border border-slate-800/80 shadow-2xl overflow-hidden flex flex-col">
+            <div class="px-5 py-3 bg-slate-900/60 border-b border-slate-800/80 flex items-center justify-between text-xs">
+                <div class="flex items-center gap-2">
+                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <span class="font-semibold text-slate-200 uppercase tracking-wider font-mono">Interactive Stage</span>
+                </div>
+                <div id="vp-indicator" class="font-mono text-slate-400 flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                    <span>Viewport: Desktop (Fluid 100%)</span>
+                </div>
+            </div>
+
+            <div class="p-6 sm:p-12 bg-slate-900/40 flex items-center justify-center min-h-[380px] overflow-x-auto">
+                <div id="viewport-frame" class="w-full transition-all duration-300 mx-auto shadow-2xl rounded-xl overflow-hidden border border-slate-700/60 bg-white">
+                    
+                    <!-- Rendered Grid Container -->
+                    <div class="features-grid" id="grid-container">
+
+                        <div class="feature-card" id="card-1">
+                            <div>
+                                <span class="feature-number">01</span>
+                                <h3 class="feature-title">Stay</h3>
+                            </div>
+                            <p class="feature-desc">Accommodation options selected around comfort, convenience and your preferred level of travel.</p>
+                        </div>
+
+                        <div class="feature-card" id="card-2">
+                            <div>
+                                <span class="feature-number">02</span>
+                                <h3 class="feature-title">Transfers</h3>
+                            </div>
+                            <p class="feature-desc">Planned transportation helps keep the journey organized between airports, accommodation and key locations.</p>
+                        </div>
+
+                        <div class="feature-card" id="card-3">
+                            <div>
+                                <span class="feature-number">03</span>
+                                <h3 class="feature-title">Assistance</h3>
+                            </div>
+                            <p class="feature-desc">Clear coordination and travel support throughout the arrangements, from planning through the journey.</p>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            
+            <!-- Controls Panel -->
+            <div class="lg:col-span-5 space-y-6">
+                <div class="bg-slate-950 p-5 sm:p-6 rounded-2xl border border-slate-800/80 shadow-md space-y-5">
+                    
+                    <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                        <h2 class="font-bold text-white text-xs uppercase tracking-wider flex items-center gap-2 font-mono">
+                            <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path></svg>
+                            Design Customizer
+                        </h2>
+                        <button onclick="resetDefaults()" class="text-xs text-emerald-400 hover:text-emerald-300 font-medium transition-colors">Reset Defaults</button>
+                    </div>
+
+                    <div class="space-y-2">
+                        <label class="text-xs font-semibold text-slate-300">Theme Presets</label>
+                        <div class="grid grid-cols-3 gap-2">
+                            <button onclick="applyPreset('emerald')" class="px-2.5 py-2 rounded-xl border border-slate-700 bg-emerald-950/60 hover:border-emerald-500 text-emerald-300 text-xs font-medium text-left transition-all">Emerald</button>
+                            <button onclick="applyPreset('charcoal')" class="px-2.5 py-2 rounded-xl border border-slate-700 bg-neutral-900 hover:border-slate-500 text-slate-200 text-xs font-medium text-left transition-all">Charcoal</button>
+                            <button onclick="applyPreset('navy')" class="px-2.5 py-2 rounded-xl border border-slate-700 bg-slate-900 hover:border-sky-500 text-sky-300 text-xs font-medium text-left transition-all">Navy</button>
+                            <button onclick="applyPreset('burgundy')" class="px-2.5 py-2 rounded-xl border border-slate-700 bg-rose-950/60 hover:border-rose-500 text-rose-300 text-xs font-medium text-left transition-all">Burgundy</button>
+                            <button onclick="applyPreset('espresso')" class="px-2.5 py-2 rounded-xl border border-slate-700 bg-amber-950/60 hover:border-amber-500 text-amber-300 text-xs font-medium text-left transition-all">Espresso</button>
+                        </div>
+                    </div>
+
+                    <div class="space-y-2 pt-2 border-t border-slate-900">
+                        <label class="text-xs font-semibold text-slate-300 flex items-center justify-between">
+                            <span>Force Hover Inspector</span>
+                            <span class="text-[10px] text-slate-500 font-normal">Freeze hover for inspection</span>
+                        </label>
+                        <div class="grid grid-cols-4 gap-2">
+                            <button onclick="setForcedHover('none')" id="fh-none" class="px-2.5 py-1.5 rounded-lg text-xs font-semibold bg-emerald-500 text-slate-950 shadow-sm">Off</button>
+                            <button onclick="setForcedHover(1)" id="fh-1" class="px-2.5 py-1.5 rounded-lg text-xs font-medium bg-slate-900 text-slate-300 border border-slate-800 hover:border-slate-700">Col 1</button>
+                            <button onclick="setForcedHover(2)" id="fh-2" class="px-2.5 py-1.5 rounded-lg text-xs font-medium bg-slate-900 text-slate-300 border border-slate-800 hover:border-slate-700">Col 2</button>
+                            <button onclick="setForcedHover(3)" id="fh-3" class="px-2.5 py-1.5 rounded-lg text-xs font-medium bg-slate-900 text-slate-300 border border-slate-800 hover:border-slate-700">Col 3</button>
+                        </div>
+                    </div>
+
+                    <div class="space-y-3 pt-2 border-t border-slate-900">
+                        
+                        <!-- Column Padding Slider -->
+                        <div class="space-y-1">
+                            <div class="flex justify-between text-xs">
+                                <label class="font-semibold text-slate-300">Column Padding</label>
+                                <span id="val-padding" class="font-mono text-emerald-400">2rem (32px)</span>
+                            </div>
+                            <input id="ctrl-padding" type="range" min="1" max="4" step="0.25" value="2" oninput="updateAllStyles()" class="w-full accent-emerald-500 cursor-pointer h-1.5 bg-slate-800 rounded-lg">
+                        </div>
+
+                        <!-- Divider Thickness Slider -->
+                        <div class="space-y-1">
+                            <div class="flex justify-between text-xs">
+                                <label class="font-semibold text-slate-300">Divider Thickness</label>
+                                <span id="val-border-width" class="font-mono text-emerald-400">1px</span>
+                            </div>
+                            <input id="ctrl-border-width" type="range" min="1" max="4" step="1" value="1" oninput="updateAllStyles()" class="w-full accent-emerald-500 cursor-pointer h-1.5 bg-slate-800 rounded-lg">
+                        </div>
+
+                        <!-- Transition Speed Slider -->
+                        <div class="space-y-1">
+                            <div class="flex justify-between text-xs">
+                                <label class="font-semibold text-slate-300">Transition Speed</label>
+                                <span id="val-speed" class="font-mono text-emerald-400">200ms</span>
+                            </div>
+                            <input id="ctrl-speed" type="range" min="100" max="800" step="50" value="200" oninput="updateAllStyles()" class="w-full accent-emerald-500 cursor-pointer h-1.5 bg-slate-800 rounded-lg">
+                        </div>
+
+                    </div>
+
+                    <div class="space-y-3 pt-2 border-t border-slate-900">
+                        <label class="text-xs font-semibold text-slate-300">Fine Color Customizer</label>
+                        
+                        <div class="grid grid-cols-2 gap-3 text-xs">
+                            <div class="bg-slate-900/60 p-2 rounded-xl border border-slate-800/80">
+                                <label class="text-[10px] text-slate-400 block mb-1 uppercase font-mono">Divider Line</label>
+                                <div class="flex items-center gap-2">
+                                    <input type="color" id="clr-border" value="#d6d3d1" onchange="updateAllStyles()" class="w-6 h-6 rounded border-0 cursor-pointer bg-transparent">
+                                    <span id="lbl-border" class="font-mono text-slate-300 text-[11px]">#d6d3d1</span>
+                                </div>
+                            </div>
+
+                            <div class="bg-slate-900/60 p-2 rounded-xl border border-slate-800/80">
+                                <label class="text-[10px] text-slate-400 block mb-1 uppercase font-mono">Hover Background</label>
+                                <div class="flex items-center gap-2">
+                                    <input type="color" id="clr-hover-bg" value="#064e3b" onchange="updateAllStyles()" class="w-6 h-6 rounded border-0 cursor-pointer bg-transparent">
+                                    <span id="lbl-hover-bg" class="font-mono text-slate-300 text-[11px]">#064e3b</span>
+                                </div>
+                            </div>
+
+                            <div class="bg-slate-900/60 p-2 rounded-xl border border-slate-800/80">
+                                <label class="text-[10px] text-slate-400 block mb-1 uppercase font-mono">Hover Title</label>
+                                <div class="flex items-center gap-2">
+                                    <input type="color" id="clr-hover-title" value="#ecfdf5" onchange="updateAllStyles()" class="w-6 h-6 rounded border-0 cursor-pointer bg-transparent">
+                                    <span id="lbl-hover-title" class="font-mono text-slate-300 text-[11px]">#ecfdf5</span>
+                                </div>
+                            </div>
+
+                            <div class="bg-slate-900/60 p-2 rounded-xl border border-slate-800/80">
+                                <label class="text-[10px] text-slate-400 block mb-1 uppercase font-mono">Hover Number</label>
+                                <div class="flex items-center gap-2">
+                                    <input type="color" id="clr-hover-num" value="#34d399" onchange="updateAllStyles()" class="w-6 h-6 rounded border-0 cursor-pointer bg-transparent">
+                                    <span id="lbl-hover-num" class="font-mono text-slate-300 text-[11px]">#34d399</span>
+                                </div>
+                            </div>
+
+                            <div class="bg-slate-900/60 p-2 rounded-xl border border-slate-800/80">
+                                <label class="text-[10px] text-slate-400 block mb-1 uppercase font-mono">Hover Description</label>
+                                <div class="flex items-center gap-2">
+                                    <input type="color" id="clr-hover-desc" value="#a7f3d0" onchange="updateAllStyles()" class="w-6 h-6 rounded border-0 cursor-pointer bg-transparent">
+                                    <span id="lbl-hover-desc" class="font-mono text-slate-300 text-[11px]">#a7f3d0</span>
+                                </div>
+                            </div>
+
+                            <div class="bg-slate-900/60 p-2 rounded-xl border border-slate-800/80">
+                                <label class="text-[10px] text-slate-400 block mb-1 uppercase font-mono">Normal Title</label>
+                                <div class="flex items-center gap-2">
+                                    <input type="color" id="clr-normal-title" value="#1c1917" onchange="updateAllStyles()" class="w-6 h-6 rounded border-0 cursor-pointer bg-transparent">
+                                    <span id="lbl-normal-title" class="font-mono text-slate-300 text-[11px]">#1c1917</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="lg:col-span-7 space-y-4">
+                <div class="bg-slate-950 rounded-2xl border border-slate-800/80 shadow-md overflow-hidden flex flex-col h-full min-h-[500px]">
+                    
+                    <!-- Tabs Header -->
+                    <div class="bg-slate-900/90 px-4 py-3 border-b border-slate-800 flex items-center justify-between flex-wrap gap-2">
+                        <div class="flex items-center space-x-1">
+                            <button onclick="switchTab('combined')" id="tab-combined" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-emerald-500 text-slate-950 transition-all">Single File (HTML + CSS)</button>
+                            <button onclick="switchTab('css')" id="tab-css" class="px-3 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition-all">Pure CSS</button>
+                            <button onclick="switchTab('html')" id="tab-html" class="px-3 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition-all">HTML Markup</button>
+                        </div>
+
+                        <button onclick="copyCurrentCode()" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-100 border border-slate-700 font-semibold px-3 py-1.5 rounded-lg transition-all flex items-center gap-1.5">
+                            <svg class="w-3.5 h-3.5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                            <span id="copy-btn-text">Copy Code</span>
+                        </button>
+                    </div>
+
+                    <!-- Code Display Box -->
+                    <div class="p-4 flex-grow bg-slate-950 overflow-hidden relative">
+                        <pre id="code-output" class="font-mono text-xs text-emerald-300 leading-relaxed overflow-x-auto whitespace-pre p-2 h-full max-h-[520px] focus:outline-none"></pre>
+                    </div>
+
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-6 right-6 bg-emerald-500 text-slate-950 font-semibold text-xs px-4 py-2.5 rounded-xl shadow-2xl transition-all duration-300 opacity-0 transform translate-y-4 pointer-events-none flex items-center gap-2 z-50">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+        <span id="toast-msg">Code copied to clipboard!</span>
+    </div>
+
+    <script>
+        let currentTab = 'combined';
+        let forcedHoverCard = 'none';
+
+        const presets = {
+            emerald: {
+                hoverBg: '#064e3b',
+                hoverNum: '#34d399',
+                hoverTitle: '#ecfdf5',
+                hoverDesc: '#a7f3d0',
+                border: '#d6d3d1',
+                normalTitle: '#1c1917',
+                normalNum: '#b38e46',
+                normalDesc: '#57534e'
+            },
+            charcoal: {
+                hoverBg: '#18181b',
+                hoverNum: '#fbbf24',
+                hoverTitle: '#ffffff',
+                hoverDesc: '#e4e4e7',
+                border: '#e4e4e7',
+                normalTitle: '#09090b',
+                normalNum: '#d97706',
+                normalDesc: '#52525b'
+            },
+            navy: {
+                hoverBg: '#0f172a',
+                hoverNum: '#38bdf8',
+                hoverTitle: '#f8fafc',
+                hoverDesc: '#cbd5e1',
+                border: '#cbd5e1',
+                normalTitle: '#0f172a',
+                normalNum: '#0284c7',
+                normalDesc: '#475569'
+            },
+            burgundy: {
+                hoverBg: '#4c0519',
+                hoverNum: '#fb7185',
+                hoverTitle: '#fff1f2',
+                hoverDesc: '#fecdd3',
+                border: '#e2e8f0',
+                normalTitle: '#1e293b',
+                normalNum: '#e11d48',
+                normalDesc: '#475569'
+            },
+            espresso: {
+                hoverBg: '#451a03',
+                hoverNum: '#fbbf24',
+                hoverTitle: '#fef3c7',
+                hoverDesc: '#fde68a',
+                border: '#e7e5e4',
+                normalTitle: '#292524',
+                normalNum: '#b45309',
+                normalDesc: '#57534e'
+            }
+        };
+
+        function setViewport(mode) {
+            const frame = document.getElementById('viewport-frame');
+            const indicator = document.getElementById('vp-indicator');
+            const btnDesktop = document.getElementById('btn-vp-desktop');
+            const btnTablet = document.getElementById('btn-vp-tablet');
+            const btnMobile = document.getElementById('btn-vp-mobile');
+
+            const activeClass = "px-3 py-1.5 rounded-lg bg-emerald-500 text-slate-950 font-semibold shadow-sm transition-all flex items-center gap-1.5";
+            const inactiveClass = "px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition-all flex items-center gap-1.5";
+
+            btnDesktop.className = inactiveClass;
+            btnTablet.className = inactiveClass;
+            btnMobile.className = inactiveClass;
+
+            if (mode === 'desktop') {
+                frame.style.maxWidth = '100%';
+                indicator.innerHTML = '<span class="w-2 h-2 rounded-full bg-emerald-500"></span><span>Viewport: Desktop (Fluid 100%)</span>';
+                btnDesktop.className = activeClass;
+            } else if (mode === 'tablet') {
+                frame.style.maxWidth = '768px';
+                indicator.innerHTML = '<span class="w-2 h-2 rounded-full bg-sky-400"></span><span>Viewport: Tablet (768px Frame)</span>';
+                btnTablet.className = activeClass;
+            } else if (mode === 'mobile') {
+                frame.style.maxWidth = '375px';
+                indicator.innerHTML = '<span class="w-2 h-2 rounded-full bg-amber-400"></span><span>Viewport: Mobile (375px Frame)</span>';
+                btnMobile.className = activeClass;
+            }
+        }
+
+        function setForcedHover(col) {
+            forcedHoverCard = col;
+            [1, 2, 3].forEach(i => {
+                const card = document.getElementById(`card-${i}`);
+                const btn = document.getElementById(`fh-${i}`);
+                card.classList.remove('forced-hover');
+                btn.className = "px-2.5 py-1.5 rounded-lg text-xs font-medium bg-slate-900 text-slate-300 border border-slate-800 hover:border-slate-700";
+            });
+
+            document.getElementById('fh-none').className = "px-2.5 py-1.5 rounded-lg text-xs font-medium bg-slate-900 text-slate-300 border border-slate-800 hover:border-slate-700";
+
+            if (col === 'none') {
+                document.getElementById('fh-none').className = "px-2.5 py-1.5 rounded-lg text-xs font-semibold bg-emerald-500 text-slate-950 shadow-sm";
+            } else {
+                document.getElementById(`card-${col}`).classList.add('forced-hover');
+                document.getElementById(`fh-${col}`).className = "px-2.5 py-1.5 rounded-lg text-xs font-semibold bg-emerald-500 text-slate-950 shadow-sm";
+            }
+        }
+
+        function applyPreset(key) {
+            const p = presets[key];
+            if (!p) return;
+            document.getElementById('clr-hover-bg').value = p.hoverBg;
+            document.getElementById('clr-hover-num').value = p.hoverNum;
+            document.getElementById('clr-hover-title').value = p.hoverTitle;
+            document.getElementById('clr-hover-desc').value = p.hoverDesc;
+            document.getElementById('clr-border').value = p.border;
+            document.getElementById('clr-normal-title').value = p.normalTitle;
+
+            updateAllStyles();
+        }
+
+        function switchTab(tab) {
+            currentTab = tab;
+            ['combined', 'css', 'html'].forEach(t => {
+                const btn = document.getElementById(`tab-${t}`);
+                if (t === tab) {
+                    btn.className = "px-3 py-1.5 rounded-lg text-xs font-semibold bg-emerald-500 text-slate-950 transition-all";
+                } else {
+                    btn.className = "px-3 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition-all";
+                }
+            });
+            updateAllStyles();
+        }
+
+        function updateAllStyles() {
+            const paddingRem = document.getElementById('ctrl-padding').value;
+            const borderWidth = document.getElementById('ctrl-border-width').value;
+            const speedMs = document.getElementById('ctrl-speed').value;
+            
+            const clrBorder = document.getElementById('clr-border').value;
+            const clrHoverBg = document.getElementById('clr-hover-bg').value;
+            const clrHoverTitle = document.getElementById('clr-hover-title').value;
+            const clrHoverNum = document.getElementById('clr-hover-num').value;
+            const clrHoverDesc = document.getElementById('clr-hover-desc').value;
+            const clrNormalTitle = document.getElementById('clr-normal-title').value;
+
+            // Update Label Text
+            document.getElementById('val-padding').innerText = `${paddingRem}rem (${paddingRem * 16}px)`;
+            document.getElementById('val-border-width').innerText = `${borderWidth}px`;
+            document.getElementById('val-speed').innerText = `${speedMs}ms`;
+            
+            document.getElementById('lbl-border').innerText = clrBorder;
+            document.getElementById('lbl-hover-bg').innerText = clrHoverBg;
+            document.getElementById('lbl-hover-title').innerText = clrHoverTitle;
+            document.getElementById('lbl-hover-num').innerText = clrHoverNum;
+            document.getElementById('lbl-hover-desc').innerText = clrHoverDesc;
+            document.getElementById('lbl-normal-title').innerText = clrNormalTitle;
+
+            const generatedCSS = `/* Layout Container */
+.features-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  border-top: ${borderWidth}px solid ${clrBorder};
+  border-bottom: ${borderWidth}px solid ${clrBorder};
+  background-color: #ffffff;
+}
+
+@media (min-width: 768px) {
+  .features-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  /* Full-height vertical divider lines between columns */
+  .feature-card:not(:last-child) {
+    border-right: ${borderWidth}px solid ${clrBorder};
+    border-bottom: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .feature-card:not(:last-child) {
+    border-bottom: ${borderWidth}px solid ${clrBorder};
+  }
+}
+
+/* Individual Column Card Structure */
+.feature-card {
+  padding: ${paddingRem}rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  background-color: #ffffff;
+  transition: all ${speedMs}ms ease;
+}
+
+/* Typography Elements */
+.feature-number {
+  font-family: monospace;
+  font-size: 0.75rem;
+  color: #b38e46;
+  transition: color ${speedMs}ms ease;
+}
+
+.feature-title {
+  font-family: Georgia, serif;
+  font-size: 1.875rem;
+  font-weight: 600;
+  color: ${clrNormalTitle};
+  margin: 0.75rem 0 0 0;
+  transition: color ${speedMs}ms ease;
+}
+
+.feature-desc {
+  font-size: 0.875rem;
+  color: #57534e;
+  line-height: 1.5;
+  margin-top: 1.5rem;
+  transition: color ${speedMs}ms ease;
+}
+
+/* Hover Color Inversion Rules */
+.feature-card:hover,
+.feature-card.forced-hover {
+  background-color: ${clrHoverBg};
+}
+
+.feature-card:hover .feature-number,
+.feature-card.forced-hover .feature-number {
+  color: ${clrHoverNum};
+}
+
+.feature-card:hover .feature-title,
+.feature-card.forced-hover .feature-title {
+  color: ${clrHoverTitle};
+}
+
+.feature-card:hover .feature-desc,
+.feature-card.forced-hover .feature-desc {
+  color: ${clrHoverDesc};
+}`;
+
+            const generatedHTML = `<div class="features-grid">
+
+  <div class="feature-card">
+    <div>
+      <span class="feature-number">01</span>
+      <h3 class="feature-title">Stay</h3>
+    </div>
+    <p class="feature-desc">Accommodation options selected around comfort, convenience and your preferred level of travel.</p>
+  </div>
+
+  <div class="feature-card">
+    <div>
+      <span class="feature-number">02</span>
+      <h3 class="feature-title">Transfers</h3>
+    </div>
+    <p class="feature-desc">Planned transportation helps keep the journey organized between airports, accommodation and key locations.</p>
+  </div>
+
+  <div class="feature-card">
+    <div>
+      <span class="feature-number">03</span>
+      <h3 class="feature-title">Assistance</h3>
+    </div>
+    <p class="feature-desc">Clear coordination and travel support throughout the arrangements, from planning through the journey.</p>
+  </div>
+
+</div>`;
+
+            // Inject into live stage
+            document.getElementById('stage-dynamic-styles').innerHTML = generatedCSS;
+
+            // Output generated code to display box
+            const codeOutput = document.getElementById('code-output');
+            if (currentTab === 'combined') {
+                codeOutput.innerText = `<style>\n${generatedCSS}\n</style>\n\n${generatedHTML}`;
+            } else if (currentTab === 'css') {
+                codeOutput.innerText = generatedCSS;
+            } else {
+                codeOutput.innerText = generatedHTML;
+            }
+        }
+
+        function copyCurrentCode() {
+            const textToCopy = document.getElementById('code-output').innerText;
+            
+            // Standard fallback execCommand for restricted iFrame contexts
+            const textArea = document.createElement('textarea');
+            textArea.value = textToCopy;
+            textArea.style.position = 'fixed';
+            textArea.style.left = '-9999px';
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            
+            try {
+                document.execCommand('copy');
+                showToast();
+            } catch (err) {
+                console.error('Failed to copy', err);
+            }
+            document.body.removeChild(textArea);
+        }
+
+        function showToast() {
+            const toast = document.getElementById('toast');
+            const copyBtnText = document.getElementById('copy-btn-text');
+            
+            copyBtnText.innerText = "Copied!";
+            toast.classList.remove('opacity-0', 'translate-y-4', 'pointer-events-none');
+            
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-4', 'pointer-events-none');
+                copyBtnText.innerText = "Copy Code";
+            }, 2000);
+        }
+
+        function resetDefaults() {
+            document.getElementById('ctrl-padding').value = 2;
+            document.getElementById('ctrl-border-width').value = 1;
+            document.getElementById('ctrl-speed').value = 200;
+            applyPreset('emerald');
+            setForcedHover('none');
+        }
+
+        /* Initialize on load */
+        window.onload = function() {
+            updateAllStyles();
+        };
+    </script>
+</body>
+</html>

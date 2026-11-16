@@ -1,0 +1,1619 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Origin — Umrah</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,200&display=swap');
+
+
+        /* ========================================================
+           UMRAH PAGE
+        ======================================================== */
+
+        * {
+            -webkit-user-drag: none;
+        }
+
+        :root {
+            --umrah-accent-light: #e1b25c;
+            --umrah-accent-dark: #9f6b18;
+            --umrah-accent-soft: rgba(219, 140, 4, 0.18);
+            --umrah-accent-glow: rgba(219, 140, 4, 0.30);
+
+            --umrah-sand: #db8c04;
+            --umrah-sand-soft: rgba(219, 140, 4, 0.18);
+        }
+
+
+        /* ========================================================
+           NAVBAR
+        ======================================================== */
+
+        .nav-btn,
+        .nav-btn:hover,
+        .nav-btn:focus,
+        .nav-btn:visited {
+            text-decoration: none;
+        }
+
+
+        /* ========================================================
+           UMRAH HERO
+        ======================================================== */
+
+        .umrah-hero {
+            position: relative;
+
+            min-height: 75vh;
+
+            display: grid;
+            grid-template-columns: 45% 55%;
+            align-items: center;
+
+            padding: 150px 8% 90px;
+
+            background: #070707;
+            color: #ffffff;
+
+            overflow: hidden;
+        }
+
+        .umrah-hero::after {
+            content: "";
+
+            position: absolute;
+
+            right: 8%;
+            bottom: 34px;
+
+            width: 110px;
+            height: 1px;
+
+            background: var(--umrah-accent-light);
+
+            opacity: 0.8;
+        }
+
+
+        /* ========================================================
+           HERO CONTENT
+        ======================================================== */
+
+        .umrah-hero-content {
+            position: relative;
+
+            z-index: 2;
+
+            max-width: 800px;
+        }
+
+        .umrah-hero h1 {
+            max-width: 800px;
+
+            font-size: clamp(3.2rem, 7vw, 6.5rem);
+
+            line-height: 0.92;
+            letter-spacing: -3px;
+        }
+
+        .umrah-hero h1 span {
+            display: block;
+
+            color: var(--umrah-accent-light);
+        }
+
+        .umrah-intro {
+            max-width: 620px;
+
+            margin-top: 35px;
+
+            color: #cfcfcf;
+
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+
+        /* ========================================================
+           UMRAH HERO IMAGE
+        ======================================================== */
+
+        .umrah-hero-visual {
+            position: relative;
+
+            height: 560px;
+
+            margin-left: 30px;
+
+            overflow: hidden;
+
+            align-self: center;
+
+            border: 1px solid rgba(255, 255, 255, 0.2);
+
+            box-shadow:
+                18px 18px 0 var(--umrah-accent-soft);
+        }
+
+        .umrah-hero-visual img {
+            width: 100%;
+            height: 100%;
+
+            display: block;
+
+            object-fit: cover;
+            object-position: center;
+
+            opacity: 0.9;
+        }
+
+        .umrah-hero-visual::after {
+            content: "";
+
+            position: absolute;
+
+            inset: 0;
+
+            background:
+                linear-gradient(
+                    to right,
+                    #070707 0%,
+                    rgba(7, 7, 7, 0.75) 12%,
+                    rgba(7, 7, 7, 0.15) 38%,
+                    transparent 60%
+                );
+        }
+
+        .umrah-hero-visual::before {
+            content: "";
+
+            position: absolute;
+
+            inset: 0;
+
+            z-index: 1;
+
+            background:
+                linear-gradient(
+                    to bottom,
+                    rgba(7, 7, 7, 0.35),
+                    transparent 20%,
+                    transparent 80%,
+                    rgba(7, 7, 7, 0.7)
+                );
+        }
+
+        .umrah-hero .hero-image-caption {
+            position: absolute;
+
+            z-index: 2;
+
+            right: 25px;
+            bottom: 25px;
+            left: 25px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            color: var(--umrah-accent-light);
+
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+
+        /* ========================================================
+           UMRAH INTRO
+        ======================================================== */
+
+        .umrah-intro-section {
+            position: relative;
+
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+
+            padding: 120px 8%;
+
+            background: #111111;
+            color: #ffffff;
+
+            align-items: center;
+
+            overflow: hidden;
+        }
+
+        .umrah-intro-section::before {
+            content: "";
+
+            position: absolute;
+
+            width: 520px;
+            height: 520px;
+
+            left: -260px;
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            background:
+                radial-gradient(
+                    circle,
+                    var(--umrah-accent-glow) 0%,
+                    rgba(219, 140, 4, 0.15) 35%,
+                    rgba(219, 140, 4, 0.05) 60%,
+                    transparent 75%
+                );
+
+            pointer-events: none;
+        }
+
+        .umrah-intro-section::after {
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+            top: 0;
+
+            width: 2px;
+            height: 100%;
+
+            background:
+                linear-gradient(
+                    to bottom,
+                    transparent,
+                    var(--umrah-accent-light),
+                    transparent
+                );
+
+            opacity: 0.65;
+        }
+
+        .umrah-intro-heading,
+        .umrah-intro-text {
+            position: relative;
+
+            z-index: 1;
+        }
+
+        .umrah-intro-heading {
+            max-width: 700px;
+        }
+
+        .umrah-intro-heading h2 {
+            font-size: clamp(2.8rem, 5vw, 5rem);
+
+            line-height: 0.95;
+            letter-spacing: -3px;
+        }
+
+        .umrah-intro-text {
+            max-width: 550px;
+        }
+
+        .umrah-intro-text p {
+            margin-bottom: 30px;
+
+            color: #c0c0c0;
+
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        .umrah-intro-link,
+        .umrah-intro-link:link,
+        .umrah-intro-link:visited {
+            display: inline-block;
+
+            color: #ffffff;
+
+            text-decoration: none;
+
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .umrah-intro-link:hover,
+        .umrah-intro-link:focus {
+            text-decoration: underline;
+        }
+
+
+        /* ========================================================
+           UMRAH JOURNEY SUPPORT
+        ======================================================== */
+
+        .umrah-support {
+            padding: 110px 8%;
+
+            background: #ffffff;
+            color: #070707;
+        }
+
+        .umrah-support-heading {
+            max-width: 750px;
+
+            margin-bottom: 65px;
+        }
+
+        .umrah-support-heading h2 {
+            font-size: clamp(2.8rem, 5vw, 5rem);
+
+            line-height: 0.95;
+            letter-spacing: -3px;
+        }
+
+
+        /* ========================================================
+           SUPPORT GRID
+        ======================================================== */
+
+        .umrah-support-grid {
+            display: grid;
+
+            grid-template-columns: repeat(3, 1fr);
+
+            border: 1px solid #d6d3d1;
+
+            background: #ffffff;
+        }
+
+
+        /* ========================================================
+           SUPPORT CARD
+        ======================================================== */
+
+        .umrah-support-item {
+            min-height: 300px;
+
+            padding: 2rem;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            background-color: #ffffff;
+
+            border-right: 1px solid #d6d3d1;
+
+            cursor: pointer;
+
+            transition:
+                background-color 200ms ease;
+        }
+
+        .umrah-support-item:last-child {
+            border-right: none;
+        }
+
+
+        /* ========================================================
+           SUPPORT NUMBER
+        ======================================================== */
+
+        .umrah-support-number {
+            display: block;
+
+            color: #b38e46;
+
+            font-family: monospace;
+            font-size: 0.75rem;
+
+            transition:
+                color 200ms ease;
+        }
+
+        /* ========================================================
+           SUPPORT TITLE
+        ======================================================== */
+        
+        .umrah-support-item h3 {
+            margin: 0.9rem 0 0;
+            color: #1c1917;        
+            font-family: inherit;
+        
+            font-size: 2.8rem;
+            font-weight: 700;
+
+            line-height: 0.95;
+            letter-spacing: -1.5px;
+            min-height: 2.7rem;
+            transition: color 200ms ease;
+        }
+
+        /* ========================================================
+           SUPPORT DESCRIPTION
+        ======================================================== */
+
+        .umrah-support-item p {
+            max-width: 360px;
+
+            margin-top: 2rem;
+
+            color: #57534e;
+
+            font-size: 0.875rem;
+
+            line-height: 1.65;
+
+            transition:
+                color 200ms ease;
+        }
+
+
+        /* ========================================================
+           SUPPORT HOVER
+        ======================================================== */
+
+        .umrah-support-item:hover {
+            background-color: #064e3b;
+        }
+
+        .umrah-support-item:hover .umrah-support-number {
+            color: #34d399;
+        }
+
+        .umrah-support-item:hover h3 {
+            color: #d4a85c;
+        }
+
+        .umrah-support-item:hover p {
+            color: #a7f3d0;
+        }
+
+
+        /* ========================================================
+           UMRAH PACKAGES
+        ======================================================== */
+
+        .umrah-packages-section {
+            padding: 110px 8%;
+
+            background: #070707;
+            color: #ffffff;
+        }
+
+        .umrah-packages-heading {
+            max-width: 750px;
+
+            margin-bottom: 70px;
+        }
+
+        .umrah-packages-heading h2 {
+            font-size: clamp(2.8rem, 5vw, 5rem);
+
+            line-height: 0.95;
+            letter-spacing: -3px;
+        }
+
+        .umrah-packages-grid {
+            display: grid;
+
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 25px;
+        }
+
+
+        /* ========================================================
+           UMRAH CARD
+        ======================================================== */
+
+        .umrah-card {
+            display: flex;
+            flex-direction: column;
+
+            min-height: 480px;
+
+            background: #111111;
+            color: #ffffff;
+
+            border: 1px solid rgba(255, 255, 255, 0.08);
+
+            border-radius: 4px;
+
+            overflow: hidden;
+
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease,
+                border-color 0.3s ease;
+        }
+
+        .umrah-card:hover {
+            transform: translateY(-8px);
+
+            border-color: rgba(219, 140, 4, 0.5);
+
+            box-shadow:
+                0 20px 40px rgba(0, 0, 0, 0.25);
+        }
+
+        .umrah-card-top {
+            display: flex;
+
+            justify-content: space-between;
+            align-items: center;
+
+            padding: 22px 28px;
+
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .umrah-number {
+            color: var(--umrah-sand);
+
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+        }
+
+        .umrah-duration {
+            color: #888888;
+
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        .umrah-card-content {
+            flex: 1;
+
+            padding: 30px;
+
+            display: flex;
+            flex-direction: column;
+        }
+
+        .package-badge {
+            display: inline-block;
+
+            align-self: flex-start;
+
+            margin-bottom: 18px;
+
+            padding: 6px 10px;
+
+            background: var(--umrah-sand);
+            color: #070707;
+
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+
+            border-radius: 2px;
+        }
+
+        .umrah-card-content h3 {
+            margin-bottom: 18px;
+
+            font-size: 2.1rem;
+
+            line-height: 1;
+            letter-spacing: -1px;
+        }
+
+        .umrah-card-content p {
+            margin-bottom: 25px;
+
+            color: #bdbdbd;
+
+            line-height: 1.7;
+        }
+
+        .umrah-card-content ul {
+            margin: 0 0 30px;
+
+            padding-left: 18px;
+
+            color: #d2d2d2;
+
+            line-height: 1.9;
+        }
+
+        .umrah-card-content li::marker {
+            color: var(--umrah-sand);
+        }
+
+        .umrah-card-content a {
+            margin-top: auto;
+
+            color: #ffffff;
+
+            text-decoration: none;
+
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .umrah-card-content a:hover {
+            text-decoration: underline;
+        }
+
+
+    
+
+       /* ========================================================
+           FEATURED UMRAH CARD — GOLD GLASS
+        ======================================================== */
+            
+        .featured-umrah {
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+        
+            border-color: rgba(219, 140, 4, 0.45);
+        
+            box-shadow:
+                inset 0 3px 0 var(--umrah-sand);
+        
+            transition:
+                transform 350ms ease,
+                border-color 350ms ease,
+                box-shadow 350ms ease;
+        }
+        
+        
+        /* Elegant gradient inside the card header */
+        .featured-umrah .umrah-card-top {
+            position: relative;
+            z-index: 1;
+        
+            background: linear-gradient(
+                110deg,
+                rgba(219, 140, 4, 0.16) 0%,
+                rgba(219, 140, 4, 0.08) 45%,
+                rgba(219, 140, 4, 0.025) 100%
+            );
+        
+            border-bottom: 1px solid rgba(219, 140, 4, 0.18);
+        }
+        
+        
+        /* Keep card content above the glass sweep */
+        .featured-umrah .umrah-card-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        
+        /* Translucent gold glass reflection */
+        .featured-umrah::after {
+            content: "";
+        
+            position: absolute;
+            z-index: 0;
+        
+            top: 0;
+            left: -110%;
+        
+            width: 65%;
+            height: 100%;
+        
+            background: linear-gradient(
+                110deg,
+                transparent 0%,
+                rgba(219, 140, 4, 0.015) 30%,
+                rgba(219, 140, 4, 0.13) 50%,
+                rgba(219, 140, 4, 0.035) 70%,
+                transparent 100%
+            );
+        
+            transform: skewX(-18deg);
+        
+            pointer-events: none;
+        }
+        
+        
+        /* Card hover */
+        .featured-umrah:hover {
+            transform: translateY(-10px);
+        
+            border-color: rgba(219, 140, 4, 0.75);
+        
+            box-shadow:
+                inset 0 3px 0 var(--umrah-sand),
+                0 22px 45px rgba(0, 0, 0, 0.35);
+        }
+        
+        
+        /* Repeat the glass sweep while hovering */
+        .featured-umrah:hover::after {
+            animation: umrah-glass-sweep 1.6s ease-in-out infinite;
+        }
+        
+        
+        @keyframes umrah-glass-sweep {
+            from {
+                left: -110%;
+            }
+        
+            to {
+                left: 140%;
+            }
+        }
+        
+        /* ========================================================
+           UMRAH FEATURE
+        ======================================================== */
+
+        .umrah-feature {
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            min-height: 620px;
+
+            background: #ffffff;
+            color: #070707;
+
+            border-top: 1px solid #d9d9d9;
+            border-bottom: 1px solid #d9d9d9;
+        }
+
+
+        /* ========================================================
+           UMRAH FEATURE IMAGE PANEL
+        ======================================================== */
+
+        .umrah-feature-image {
+            position: relative;
+
+            min-height: 620px;
+
+            padding: 28px;
+
+            background: #f2f1ee;
+
+            border-right: 1px solid #d2d0cb;
+
+            display: flex;
+            align-items: stretch;
+        }
+
+        .umrah-feature-image::before {
+            content: "01 / HOLY CITIES";
+
+            position: absolute;
+
+            top: 44px;
+            left: 48px;
+
+            z-index: 2;
+
+            color: #ffffff;
+
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+
+            text-shadow:
+                0 2px 10px rgba(0, 0, 0, 0.35);
+        }
+
+        .umrah-feature-image img {
+            width: 100%;
+            height: 100%;
+
+            display: block;
+
+            object-fit: cover;
+            object-position: center;
+
+            border: 1px solid rgba(7, 7, 7, 0.16);
+
+            box-shadow:
+                0 16px 40px rgba(7, 7, 7, 0.14);
+        }
+
+
+        /* ========================================================
+           UMRAH FEATURE CONTENT
+        ======================================================== */
+
+        .umrah-feature-content {
+            position: relative;
+
+            padding: 90px 10%;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+
+            background: #ffffff;
+            color: #070707;
+        }
+
+        .umrah-feature-content::before {
+            content: "";
+
+            position: absolute;
+
+            top: 90px;
+            bottom: 90px;
+            left: 0;
+
+            width: 1px;
+
+            background: #e2e2e2;
+        }
+
+        .umrah-feature-content h2 {
+            max-width: 600px;
+
+            margin-bottom: 30px;
+
+            font-size: clamp(3rem, 6vw, 6rem);
+
+            line-height: 0.9;
+            letter-spacing: -3px;
+        }
+
+        .umrah-feature-content p:not(.section-label) {
+            max-width: 500px;
+
+            margin-bottom: 35px;
+
+            color: #555555;
+
+            line-height: 1.8;
+        }
+
+        .umrah-feature-content .home-btn {
+            background: #070707;
+            color: #ffffff;
+            border-color: #070707;
+        }
+
+        .umrah-feature-content .home-btn:hover {
+            background: var(--umrah-sand);
+            color: #070707;
+            border-color: var(--umrah-sand);
+        }
+
+
+        /* ========================================================
+           UMRAH CTA
+        ======================================================== */
+
+        .umrah-cta {
+            position: relative;
+
+            min-height: 500px;
+
+            padding: 100px 8%;
+
+            background: #070707;
+            color: #ffffff;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+
+            overflow: hidden;
+        }
+
+        .umrah-cta::before {
+            content: "";
+
+            position: absolute;
+
+            width: 520px;
+            height: 520px;
+
+            right: -260px;
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(219, 140, 4, 0.22) 0%,
+                    rgba(219, 140, 4, 0.08) 40%,
+                    transparent 75%
+                );
+
+            pointer-events: none;
+        }
+
+        .umrah-cta::after {
+            content: "";
+
+            position: absolute;
+
+            left: 50%;
+            bottom: 0;
+
+            width: 120px;
+            height: 2px;
+
+            transform: translateX(-50%);
+
+            background: var(--umrah-accent-light);
+
+            opacity: 0.8;
+        }
+
+        .umrah-cta .section-label,
+        .umrah-cta h2,
+        .umrah-cta .home-btn {
+            position: relative;
+            z-index: 1;
+        }
+
+        .umrah-cta .section-label {
+            color: var(--umrah-accent-light);
+        }
+
+        .umrah-cta h2 {
+            max-width: 950px;
+
+            margin-bottom: 35px;
+
+            font-size: clamp(3rem, 7vw, 6rem);
+
+            line-height: 0.9;
+            letter-spacing: -3px;
+        }
+
+        .umrah-cta .home-btn {
+            background: #ffffff;
+            color: #070707;
+            border-color: #ffffff;
+        }
+
+        .umrah-cta .home-btn:hover {
+            background: var(--umrah-accent-light);
+            color: #070707;
+            border-color: var(--umrah-accent-light);
+        }
+
+
+        /* ========================================================
+           UMRAH RESPONSIVE
+        ======================================================== */
+
+        @media (max-width: 1100px) {
+
+            .umrah-packages-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .umrah-support-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .umrah-support-item {
+                min-height: 240px;
+
+                border-right: none;
+                border-bottom: 1px solid #d6d3d1;
+            }
+
+            .umrah-support-item:last-child {
+                border-bottom: none;
+            }
+
+        }
+
+
+        @media (max-width: 1000px) {
+
+            .umrah-feature {
+                grid-template-columns: 1fr;
+            }
+
+            .umrah-feature-image {
+                min-height: 450px;
+
+                border-right: none;
+                border-bottom: 1px solid #d2d0cb;
+            }
+
+            .umrah-feature-content::before {
+                display: none;
+            }
+
+        }
+
+
+        @media (max-width: 900px) {
+
+            .umrah-intro-section {
+                grid-template-columns: 1fr;
+
+                gap: 50px;
+            }
+
+        }
+
+
+        @media (max-width: 767px) {
+
+            .umrah-support-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .umrah-support-item {
+                min-height: 220px;
+            }
+
+            .umrah-support-item:not(:last-child) {
+                border-bottom: 1px solid #d6d3d1;
+            }
+
+        }
+
+
+        @media (max-width: 700px) {
+
+            .umrah-hero {
+                min-height: 75vh;
+
+                grid-template-columns: 1fr;
+
+                padding: 140px 6% 70px;
+            }
+
+            .umrah-hero-content {
+                z-index: 3;
+            }
+
+            .umrah-hero h1 {
+                letter-spacing: -2px;
+            }
+
+            .umrah-intro {
+                font-size: 0.95rem;
+            }
+
+            .umrah-hero-visual {
+                height: 400px;
+
+                margin-left: 0;
+                margin-top: 50px;
+            }
+
+            .umrah-intro-section {
+                padding: 90px 6%;
+            }
+
+            .umrah-intro-heading h2 {
+                letter-spacing: -2px;
+            }
+
+            .umrah-support {
+                padding: 80px 6%;
+            }
+
+            .umrah-support-heading {
+                margin-bottom: 45px;
+            }
+
+            .umrah-support-item {
+                min-height: 220px;
+
+                padding: 2rem;
+            }
+
+            .umrah-support-item h3 {
+                font-size: 2.1rem;
+
+                line-height: 1.12;
+            }
+
+            .umrah-packages-section {
+                padding: 80px 6%;
+            }
+
+            .umrah-packages-heading {
+                margin-bottom: 45px;
+            }
+
+            .umrah-packages-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .umrah-card {
+                min-height: 0;
+            }
+
+            .umrah-feature-image {
+                min-height: 350px;
+
+                padding: 18px;
+            }
+
+            .umrah-feature-image::before {
+                top: 32px;
+                left: 34px;
+            }
+
+            .umrah-feature-content {
+                padding: 70px 6%;
+            }
+
+            .umrah-cta {
+                min-height: 400px;
+
+                padding: 80px 6%;
+            }
+
+        }
+
+    </style>
+
+    <script>
+
+        document.addEventListener("dragstart", function (event) {
+
+            const selection = window.getSelection();
+
+            if (selection && !selection.isCollapsed) {
+                event.preventDefault();
+            }
+
+        }, true);
+    </script>
+
+</head>
+
+
+<body>
+
+
+    <!-- ========================================================
+         NAVBAR
+    ======================================================== -->
+
+    <header class="navbar">
+
+        <div class="logo">
+            Origin
+        </div>
+
+
+        <nav class="nav-links">
+
+            <div class="nav-item">
+
+                <a href="index.html" class="nav-link">
+                    Home
+                </a>
+
+            </div>
+
+
+            <div class="nav-item">
+
+                <a href="Destination.html" class="nav-link">
+                    Destination
+                </a>
+
+            </div>
+
+
+            <div class="nav-item has-dropdown">
+
+                <a href="tours.html" class="nav-link">
+                    Tours
+                </a>
+
+                <div class="dropdown">
+
+                    <a href="Internationaltours.html">
+                        International Tours
+                    </a>
+
+                    <a href="Domestictours.html">
+                        Domestic Tours
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="nav-item">
+
+                <a href="Umrah.html" class="nav-link">
+                    Umrah
+                </a>
+
+            </div>
+
+
+            <div class="nav-item">
+
+                <a href="services.html" class="nav-link">
+                    Services
+                </a>
+
+            </div>
+
+
+            <div class="nav-item has-dropdown">
+
+                <a href="contact.html" class="nav-link">
+                    Contact
+                </a>
+
+                <div class="dropdown">
+
+                    <a href="contact.html">
+                        Contact Page
+                    </a>
+
+                    <a href="mailto:Originsoftware@gmail.com">
+                        Email
+                    </a>
+
+                    <a
+                        href="https://www.instagram.com/originsoftwares"
+                        target="_blank"
+                    >
+                        Instagram
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="nav-item">
+
+                <a href="about.html" class="nav-link">
+                    About Us
+                </a>
+
+            </div>
+
+        </nav>
+
+
+        <a
+            href="contact.html"
+            class="nav-btn"
+        >
+            Register Now
+        </a>
+
+    </header>
+
+
+    <!-- ========================================================
+         MAIN
+    ========================================================= -->
+
+    <main>
+
+
+        <!-- ====================================================
+             UMRAH HERO
+        ===================================================== -->
+
+        <section class="umrah-hero">
+
+            <div class="umrah-hero-content">
+
+                <p class="section-label">
+                    UMRAH PACKAGES
+                </p>
+
+                <h1>
+                    Your Journey
+                    <span>Begins Here.</span>
+                </h1>
+
+                <p class="umrah-intro">
+                    Thoughtfully arranged Umrah packages designed
+                    to make your journey more comfortable,
+                    organized and focused on what matters most.
+                </p>
+
+            </div>
+
+
+            <div class="umrah-hero-visual">
+
+                <img
+                    src="New folder/download.png"
+                    alt="Umrah journey"
+                >
+
+                <div class="hero-image-caption">
+
+                    <span>
+                        01
+                    </span>
+
+                    <span>
+                        MAKKAH
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ====================================================
+             INTRO
+        ===================================================== -->
+
+        <section class="umrah-intro-section">
+
+            <div class="umrah-intro-heading">
+
+                <p class="section-label">
+                    TRAVEL WITH ORIGIN
+                </p>
+
+                <h2>
+                    A Journey
+                    Worth Preparing For.
+                </h2>
+
+            </div>
+
+
+            <div class="umrah-intro-text">
+
+                <p>
+                    Choose from a range of Umrah packages based on
+                    duration, accommodation and level of comfort.
+                    Final package details, availability and pricing
+                    can be customized according to your travel dates.
+                </p>
+
+                <a
+                    href="#umrah-packages"
+                    class="umrah-intro-link"
+                >
+                    Explore Packages &rarr;
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- ====================================================
+             JOURNEY SUPPORT
+        ===================================================== -->
+
+        <section class="umrah-support">
+
+            <div class="umrah-support-heading">
+
+                <p class="section-label">
+                    THE JOURNEY MATTERS
+                </p>
+
+                <h2>
+                    More Than
+                    a Package.
+                </h2>
+
+            </div>
+
+
+            <div class="umrah-support-grid">
+
+                <article class="umrah-support-item">
+
+                    <div>
+
+                        <span class="umrah-support-number">
+                            01
+                        </span>
+
+                        <h3>
+                            Stay
+                        </h3>
+
+                    </div>
+
+                    <p>
+                        Accommodation options selected around comfort,
+                        convenience and your preferred level of travel.
+                    </p>
+
+                </article>
+
+
+                <article class="umrah-support-item">
+
+                    <div>
+
+                        <span class="umrah-support-number">
+                            02
+                        </span>
+
+                        <h3>
+                            Transfers
+                        </h3>
+
+                    </div>
+
+                    <p>
+                        Planned transportation helps keep the journey
+                        organized between airports, accommodation and
+                        key locations.
+                    </p>
+
+                </article>
+
+
+                <article class="umrah-support-item">
+
+                    <div>
+
+                        <span class="umrah-support-number">
+                            03
+                        </span>
+
+                        <h3>
+                            Assistance
+                        </h3>
+
+                    </div>
+
+                    <p>
+                        Clear coordination and travel support throughout
+                        the arrangements, from planning through the journey.
+                    </p>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- ====================================================
+             UMRAH PACKAGES
+        ===================================================== -->
+
+        <section
+            class="umrah-packages-section"
+            id="umrah-packages"
+        >
+
+            <div class="umrah-packages-heading">
+
+                <p class="section-label">
+                    PACKAGES
+                </p>
+
+                <h2>
+                    Find the Right
+                    Package for You.
+                </h2>
+
+            </div>
+
+
+            <div
+                class="umrah-packages-grid"
+                data-tour-category="umrah"
+                aria-live="polite"
+            ></div>
+
+        </section>
+
+
+        <!-- ====================================================
+             MAKKAH / MADINAH
+        ===================================================== -->
+
+        <section class="umrah-feature">
+
+            <div class="umrah-feature-image">
+
+                <img
+                    src="New folder/makkahandmadina.jpg"
+                    alt="Makkah and Madinah"
+                >
+
+            </div>
+
+
+            <div class="umrah-feature-content">
+
+                <p class="section-label">
+                    THE HOLY CITIES
+                </p>
+
+                <h2>
+                    Makkah.
+                    Madinah.
+                </h2>
+
+                <p>
+                    From accommodation and transfers to package
+                    planning, Origin is here to help make the
+                    logistics of your journey clear and organized.
+                </p>
+
+                <a
+                    href="contact.html"
+                    class="home-btn"
+                >
+                    Plan Your Umrah
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- ====================================================
+             CTA
+        ===================================================== -->
+
+        <section class="umrah-cta">
+
+            <p class="section-label">
+                BEGIN YOUR JOURNEY
+            </p>
+
+            <h2>
+                Take the Next
+                Step Toward Umrah.
+            </h2>
+
+            <a
+                href="contact.html"
+                class="home-btn"
+            >
+                Enquire Now
+            </a>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- ========================================================
+         FOOTER
+    ========================================================= -->
+
+    <footer class="hero-footer">
+
+        <p>
+            &copy; 2026 Origin Tours &amp; Travels
+            &mdash;
+            Explore more, discover more.
+        </p>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,1297 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Origin — Tours</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,200&display=swap');
+
+        * {
+            -webkit-user-drag: none;
+        }
+
+
+        /* ========================================================
+           TOURS PAGE
+        ======================================================== */
+
+        :root {
+            --tours-accent-light: #8db3df;
+            --tours-accent-dark: #456d9d;
+            --tours-accent-soft: rgba(98, 146, 204, 0.18);
+        }
+
+
+        /* ========================================================
+           NAVBAR
+        ======================================================== */
+
+        .nav-btn,
+        .nav-btn:hover,
+        .nav-btn:focus,
+        .nav-btn:visited {
+            text-decoration: none;
+        }
+
+
+        /* ========================================================
+           TOURS HERO
+        ======================================================== */
+
+        .tours-hero {
+            position: relative;
+
+            min-height: 75vh;
+
+            display: grid;
+            grid-template-columns: 45% 55%;
+            align-items: center;
+
+            padding: 150px 8% 90px;
+
+            background-color: #070707;
+            color: #ffffff;
+
+            overflow: hidden;
+        }
+
+        .tours-hero::after {
+            content: "";
+
+            position: absolute;
+
+            right: 8%;
+            bottom: 34px;
+
+            width: 110px;
+            height: 1px;
+
+            background: var(--tours-accent-light);
+            opacity: 0.8;
+        }
+
+
+        /* ========================================================
+           HERO CONTENT
+        ======================================================== */
+
+        .tours-hero-content {
+            position: relative;
+            z-index: 2;
+
+            max-width: 800px;
+        }
+
+        .tours-hero h1 {
+            max-width: 800px;
+
+            font-size: clamp(3.2rem, 7vw, 6.5rem);
+            line-height: 0.92;
+            font-weight: 700;
+            letter-spacing: -3px;
+        }
+
+        .tours-hero h1 span {
+            display: block;
+            color: var(--tours-accent-light);
+        }
+
+        .tours-intro {
+            max-width: 620px;
+
+            margin-top: 35px;
+
+            color: #cfcfcf;
+
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+
+        /* ========================================================
+           HERO IMAGE
+        ======================================================== */
+
+        .tours-hero-visual {
+            position: relative;
+
+            height: 560px;
+
+            margin-left: 30px;
+
+            overflow: hidden;
+
+            align-self: center;
+
+            border: 1px solid rgba(255, 255, 255, 0.2);
+
+            box-shadow:
+                18px 18px 0 var(--tours-accent-soft);
+        }
+
+        .tours-hero-visual img {
+            width: 100%;
+            height: 100%;
+
+            display: block;
+
+            object-fit: cover;
+            object-position: center;
+
+            opacity: 0.9;
+        }
+
+        .tours-hero-visual::after {
+            content: "";
+
+            position: absolute;
+            inset: 0;
+
+            background:
+                linear-gradient(
+                    to right,
+                    #070707 0%,
+                    rgba(7, 7, 7, 0.75) 12%,
+                    rgba(7, 7, 7, 0.15) 38%,
+                    transparent 60%
+                );
+        }
+
+        .tours-hero-visual::before {
+            content: "";
+
+            position: absolute;
+            inset: 0;
+
+            z-index: 1;
+
+            background:
+                linear-gradient(
+                    to bottom,
+                    rgba(7, 7, 7, 0.35),
+                    transparent 20%,
+                    transparent 80%,
+                    rgba(7, 7, 7, 0.7)
+                );
+        }
+
+        .tours-hero .hero-image-caption {
+            position: absolute;
+
+            z-index: 2;
+
+            right: 25px;
+            bottom: 25px;
+            left: 25px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            color: var(--tours-accent-light);
+
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+
+        /* ========================================================
+           TOURS INTRO
+        ======================================================== */
+
+        .tours-intro-section {
+            position: relative;
+
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+
+            padding: 120px 8%;
+
+            background: #111111;
+            color: #ffffff;
+
+            align-items: center;
+
+            overflow: hidden;
+        }
+
+        .tours-intro-section::before {
+            content: "";
+
+            position: absolute;
+
+            width: 520px;
+            height: 520px;
+
+            left: -260px;
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(98, 146, 204, 0.30) 0%,
+                    rgba(98, 146, 204, 0.15) 35%,
+                    rgba(98, 146, 204, 0.05) 60%,
+                    transparent 75%
+                );
+
+            pointer-events: none;
+        }
+
+        .tours-intro-section::after {
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+            top: 0;
+
+            width: 2px;
+            height: 100%;
+
+            background:
+                linear-gradient(
+                    to bottom,
+                    transparent,
+                    var(--tours-accent-light),
+                    transparent
+                );
+
+            opacity: 0.65;
+        }
+
+        .tours-intro-heading,
+        .tours-intro-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .tours-intro-heading {
+            max-width: 700px;
+        }
+
+        .tours-intro-heading h2 {
+            font-size: clamp(2.8rem, 5vw, 5rem);
+
+            line-height: 0.95;
+            letter-spacing: -3px;
+        }
+
+        .tours-intro-content {
+            max-width: 550px;
+        }
+
+        .tours-intro-content p:not(.section-label) {
+            margin-bottom: 30px;
+
+            color: #c0c0c0;
+
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        .tours-text-link,
+        .tours-text-link:link,
+        .tours-text-link:visited {
+            display: inline-block;
+
+            color: #ffffff;
+
+            text-decoration: none;
+
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .tours-text-link:hover,
+        .tours-text-link:focus {
+            text-decoration: underline;
+        }
+
+
+        /* ========================================================
+           TOURS SECTION
+        ======================================================== */
+
+        .tours-section {
+            padding: 120px 8%;
+
+            background-color: #ffffff;
+            color: #070707;
+        }
+
+
+        /* ========================================================
+           TOURS HEADING
+        ======================================================== */
+
+        .tours-heading {
+            max-width: 800px;
+
+            margin-bottom: 60px;
+        }
+
+        .tours-heading h2 {
+            max-width: 800px;
+
+            font-size: clamp(2.8rem, 5vw, 5rem);
+            line-height: 0.95;
+            letter-spacing: -3px;
+        }
+
+
+        /* ========================================================
+           TOURS GRID
+        ======================================================== */
+
+        .tours-grid {
+            display: grid;
+
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 24px;
+        }
+
+
+        /* ========================================================
+           TOUR CARD
+        ======================================================== */
+
+        .tour-card {
+            display: flex;
+            flex-direction: column;
+
+            min-height: 540px;
+
+            background-color: #070707;
+            color: #ffffff;
+
+            border-radius: 4px;
+            overflow: hidden;
+
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease;
+        }
+
+        .tour-card:hover {
+            transform: translateY(-8px);
+
+            box-shadow:
+                0 20px 40px rgba(0, 0, 0, 0.18);
+        }
+
+
+        /* ========================================================
+           TOUR IMAGE
+        ======================================================== */
+
+        .tour-image {
+            width: 100%;
+            height: 250px;
+
+            overflow: hidden;
+
+            flex-shrink: 0;
+        }
+
+        .tour-image img {
+            width: 100%;
+            height: 100%;
+
+            display: block;
+
+            object-fit: cover;
+
+            transition:
+                transform 0.5s ease;
+        }
+
+        .tour-card:hover .tour-image img {
+            transform: scale(1.06);
+        }
+
+
+        /* ========================================================
+           TOUR CONTENT
+        ======================================================== */
+
+        .tour-content {
+            flex: 1;
+
+            padding: 28px;
+
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tour-number {
+            display: block;
+
+            margin-bottom: 20px;
+
+            color: var(--tours-accent-light);
+
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+        }
+
+        .tour-content h3 {
+            margin-bottom: 15px;
+
+            font-size: 1.8rem;
+            line-height: 1;
+            letter-spacing: -0.5px;
+        }
+
+        .tour-content p {
+            margin-bottom: 25px;
+
+            color: #bdbdbd;
+
+            line-height: 1.65;
+        }
+
+        .tour-content a {
+            display: inline-block;
+
+            margin-top: auto;
+
+            color: #ffffff;
+
+            text-decoration: none;
+
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .tour-content a:hover {
+            text-decoration: underline;
+        }
+
+
+        /* ========================================================
+           FEATURED TOUR
+        ======================================================== */
+
+        .tour-feature {
+            display: grid;
+
+            grid-template-columns: 1.05fr 0.95fr;
+
+            min-height: 600px;
+
+            background-color: #070707;
+            color: #ffffff;
+        }
+
+        .tour-feature-image {
+            min-height: 600px;
+        }
+
+        .tour-feature-image img {
+            width: 100%;
+            height: 100%;
+
+            display: block;
+
+            object-fit: cover;
+        }
+
+        .tour-feature-content {
+            padding: 90px 10%;
+
+            display: flex;
+            flex-direction: column;
+
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .tour-feature-content h2 {
+            max-width: 600px;
+
+            margin-bottom: 30px;
+
+            font-size: clamp(3rem, 6vw, 6rem);
+
+            line-height: 0.9;
+            letter-spacing: -3px;
+        }
+
+        .tour-feature-content p:not(.section-label) {
+            max-width: 500px;
+
+            margin-bottom: 35px;
+
+            color: #c0c0c0;
+
+            line-height: 1.8;
+        }
+
+
+        /* ========================================================
+           TOURS CTA
+        ======================================================== */
+
+        .tours-cta {
+            min-height: 500px;
+
+            padding: 100px 8%;
+
+            background-color: #ffffff;
+            color: #070707;
+
+            display: flex;
+            flex-direction: column;
+
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+        }
+
+        .tours-cta h2 {
+            max-width: 900px;
+
+            margin-bottom: 35px;
+
+            font-size: clamp(3rem, 7vw, 6rem);
+
+            line-height: 0.9;
+            letter-spacing: -3px;
+        }
+
+
+        /* ========================================================
+           RESPONSIVE — TABLET
+        ======================================================== */
+
+        @media (max-width: 1100px) {
+
+            .tours-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+        }
+
+
+        @media (max-width: 1000px) {
+
+            .tours-hero {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .tours-hero-visual {
+                height: 500px;
+            }
+
+            .tours-intro-section {
+                grid-template-columns: 1fr;
+
+                gap: 50px;
+            }
+
+            .tour-feature {
+                grid-template-columns: 1fr;
+            }
+
+            .tour-feature-image {
+                min-height: 450px;
+            }
+
+        }
+
+
+        /* ========================================================
+           RESPONSIVE — MOBILE
+        ======================================================== */
+
+        @media (max-width: 700px) {
+
+            .tours-hero {
+                min-height: 75vh;
+
+                grid-template-columns: 1fr;
+
+                padding: 140px 6% 70px;
+            }
+
+            .tours-hero-content {
+                z-index: 3;
+            }
+
+            .tours-hero h1 {
+                letter-spacing: -2px;
+            }
+
+            .tours-intro {
+                font-size: 0.95rem;
+            }
+
+            .tours-hero-visual {
+                height: 400px;
+
+                margin-left: 0;
+                margin-top: 50px;
+            }
+
+            .tours-intro-section {
+                gap: 40px;
+
+                padding: 90px 6%;
+            }
+
+            .tours-intro-heading h2 {
+                letter-spacing: -2px;
+            }
+
+            .tours-section {
+                padding: 80px 6%;
+            }
+
+            .tours-heading {
+                margin-bottom: 45px;
+            }
+
+            .tours-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tour-image {
+                height: 240px;
+            }
+
+            .tour-card {
+                min-height: 0;
+            }
+
+            .tour-feature-image {
+                min-height: 350px;
+            }
+
+            .tour-feature-content {
+                padding: 70px 6%;
+            }
+
+            .tours-cta {
+                min-height: 400px;
+                padding: 80px 6%;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ========================================================
+         NAVBAR
+    ======================================================== -->
+
+    <header class="navbar">
+
+        <div class="logo">
+            Origin
+        </div>
+
+
+        <nav class="nav-links">
+
+            <div class="nav-item">
+
+                <a
+                    href="index.html"
+                    class="nav-link"
+                >
+                    Home
+                </a>
+
+            </div>
+
+
+            <div class="nav-item">
+
+                <a
+                    href="Destination.html"
+                    class="nav-link"
+                >
+                    Destination
+                </a>
+
+            </div>
+
+
+            <div class="nav-item has-dropdown">
+
+                <a
+                    href="tours.html"
+                    class="nav-link"
+                >
+                    Tours
+                </a>
+
+                <div class="dropdown">
+
+                    <a href="Internationaltours.html">
+                        International Tours
+                    </a>
+
+                    <a href="Domestictours.html">
+                        Domestic Tours
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="nav-item">
+
+                <a
+                    href="Umrah.html"
+                    class="nav-link"
+                >
+                    Umrah
+                </a>
+
+            </div>
+
+
+            <div class="nav-item">
+
+                <a
+                    href="services.html"
+                    class="nav-link"
+                >
+                    Services
+                </a>
+
+            </div>
+
+
+            <div class="nav-item has-dropdown">
+
+                <a
+                    href="contact.html"
+                    class="nav-link"
+                >
+                    Contact
+                </a>
+
+                <div class="dropdown">
+
+                    <a href="contact.html">
+                        Contact Page
+                    </a>
+
+                    <a href="mailto:Originsoftware@gmail.com">
+                        Email
+                    </a>
+
+                    <a
+                        href="https://www.instagram.com/originsoftwares"
+                        target="_blank"
+                    >
+                        Instagram
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="nav-item">
+
+                <a
+                    href="about.html"
+                    class="nav-link"
+                >
+                    About Us
+                </a>
+
+            </div>
+
+        </nav>
+
+
+        <a
+            href="contact.html"
+            class="nav-btn"
+        >
+            Register Now
+        </a>
+
+    </header>
+
+
+    <!-- ========================================================
+         MAIN
+    ======================================================== -->
+
+    <main>
+
+
+        <!-- ====================================================
+             TOURS HERO
+        ===================================================== -->
+
+        <section class="tours-hero">
+
+            <div class="tours-hero-content">
+
+                <p class="section-label">
+                    HOLIDAY PACKAGES
+                </p>
+
+                <h1>
+                    Holiday Packages
+                    <span>from Hyderabad.</span>
+                </h1>
+
+                <p class="tours-intro">
+                    Discover curated holiday experiences tailored
+                    just for you. From relaxing beach getaways
+                    to adventurous mountain treks.
+                </p>
+
+            </div>
+
+
+            <div class="tours-hero-visual">
+
+                <img
+                    src="New folder/Tour.jpg"
+                    alt="Holiday travel destination"
+                >
+
+                <div class="hero-image-caption">
+
+                    <span>
+                        01
+                    </span>
+
+                    <span>
+                        DOMESTIC &amp; INTERNATIONAL
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ====================================================
+             TOURS INTRO
+        ===================================================== -->
+
+        <section class="tours-intro-section">
+
+            <div class="tours-intro-heading">
+
+                <p class="section-label">
+                    FIND YOUR ESCAPE
+                </p>
+
+                <h2>
+                    Travel<br>
+                    your way.
+                </h2>
+
+            </div>
+
+
+            <div class="tours-intro-content">
+
+                <p>
+                    From quick getaways and family holidays to
+                    mountain adventures and international escapes,
+                    explore carefully planned experiences designed
+                    around the way you want to travel.
+                </p>
+
+                <a
+                    href="#tours-container"
+                    class="tours-text-link"
+                >
+                    Explore Our Packages &rarr;
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- ====================================================
+             TOUR CATEGORIES
+        ===================================================== -->
+
+        <section class="tours-section">
+
+
+            <div class="tours-heading">
+
+                <p class="section-label">
+                    EXPLORE OUR PACKAGES
+                </p>
+
+                <h2>
+                    Choose Your
+                    Next Escape.
+                </h2>
+
+            </div>
+
+
+            <div
+                class="tours-grid"
+                id="tours-container"
+            >
+
+
+                <!-- INTERNATIONAL -->
+
+                <article class="tour-card">
+
+                    <div class="tour-image">
+
+                        <img
+                            src="New folder/Tour.3.jpg"
+                            alt="International holiday"
+                        >
+
+                    </div>
+
+                    <div class="tour-content">
+
+                        <span class="tour-number">
+                            01
+                        </span>
+
+                        <h3>
+                            International Tours
+                        </h3>
+
+                        <p>
+                            Explore destinations beyond India with
+                            carefully planned international holiday
+                            packages for unforgettable experiences.
+                        </p>
+
+                        <a href="Internationaltours.html">
+                            Explore International Tours &rarr;
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+                <!-- DOMESTIC -->
+
+                <article class="tour-card">
+
+                    <div class="tour-image">
+
+                        <img
+                            src="New folder/Tour.3.jpg"
+                            alt="Domestic holiday in India"
+                        >
+
+                    </div>
+
+                    <div class="tour-content">
+
+                        <span class="tour-number">
+                            02
+                        </span>
+
+                        <h3>
+                            Domestic Tours
+                        </h3>
+
+                        <p>
+                            Discover the beauty of India with
+                            curated holiday packages covering
+                            beaches, mountains, cities and more.
+                        </p>
+
+                        <a href="Domestictours.html">
+                            Explore Domestic Tours &rarr;
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+                <!-- BEACH -->
+
+                <article class="tour-card">
+
+                    <div class="tour-image">
+
+                        <img
+                            src="New folder/beach4.jpg"
+                            alt="Beach holiday"
+                        >
+
+                    </div>
+
+                    <div class="tour-content">
+
+                        <span class="tour-number">
+                            03
+                        </span>
+
+                        <h3>
+                            Beach Getaways
+                        </h3>
+
+                        <p>
+                            Slow down and enjoy sun, sand and sea
+                            with relaxing coastal escapes designed
+                            for a memorable holiday.
+                        </p>
+
+                        <a href="Internationaltours.html">
+                            Discover Getaways &rarr;
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+                <!-- ADVENTURE -->
+
+                <article class="tour-card">
+
+                    <div class="tour-image">
+
+                        <img
+                            src="New folder/Mountain.jpg"
+                            alt="Mountain adventure"
+                        >
+
+                    </div>
+
+                    <div class="tour-content">
+
+                        <span class="tour-number">
+                            04
+                        </span>
+
+                        <h3>
+                            Mountain Adventures
+                        </h3>
+
+                        <p>
+                            Experience breathtaking landscapes,
+                            mountain trails and unforgettable
+                            outdoor adventures.
+                        </p>
+
+                        <a href="Domestictours.html">
+                            Discover Adventures &rarr;
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+                <!-- FAMILY -->
+
+                <article class="tour-card">
+
+                    <div class="tour-image">
+
+                        <img
+                            src="New folder/family.png"
+                            alt="Family holiday"
+                        >
+
+                    </div>
+
+                    <div class="tour-content">
+
+                        <span class="tour-number">
+                            05
+                        </span>
+
+                        <h3>
+                            Family Holidays
+                        </h3>
+
+                        <p>
+                            Comfortable and enjoyable holiday
+                            experiences designed for families
+                            travelling together.
+                        </p>
+
+                        <a href="contact.html">
+                            Plan Your Holiday &rarr;
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+                <!-- CUSTOM -->
+
+                <article class="tour-card">
+
+                    <div class="tour-image">
+
+                        <img
+                            src="New folder/Custom.jpg"
+                            alt="Custom holiday planning"
+                        >
+
+                    </div>
+
+                    <div class="tour-content">
+
+                        <span class="tour-number">
+                            06
+                        </span>
+
+                        <h3>
+                            Custom Packages
+                        </h3>
+
+                        <p>
+                            Have something specific in mind?
+                            Let us help build a holiday around
+                            your preferred destination and style.
+                        </p>
+
+                        <a href="contact.html">
+                            Build My Trip &rarr;
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- ====================================================
+             FEATURED TOUR
+        ===================================================== -->
+
+        <section class="tour-feature">
+
+            <div class="tour-feature-image">
+
+                <img
+                    src="New folder/Northernlights.jpg"
+                    alt="Northern lights"
+                >
+
+            </div>
+
+
+            <div class="tour-feature-content">
+
+                <p class="section-label">
+                    YOUR NEXT ESCAPE
+                </p>
+
+                <h2>
+                    From Hyderabad
+                    to the World.
+                </h2>
+
+                <p>
+                    Whether you're looking for a relaxing holiday,
+                    an adventurous escape or a carefully planned
+                    international journey, Origin helps turn your
+                    travel plans into reality.
+                </p>
+
+                <a
+                    href="contact.html"
+                    class="home-btn"
+                >
+                    Plan My Trip
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- ====================================================
+             CTA
+        ===================================================== -->
+
+        <section class="tours-cta">
+
+            <p class="section-label">
+                READY TO TRAVEL?
+            </p>
+
+            <h2>
+                Where Will
+                You Go Next?
+            </h2>
+
+            <a
+                href="contact.html"
+                class="home-btn"
+            >
+                Get in Touch
+            </a>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- ========================================================
+         FOOTER
+    ======================================================== -->
+
+    <footer class="hero-footer">
+
+        <p>
+            &copy; 2026 Origin Tours &amp; Travels
+            &mdash;
+            Explore more, discover more.
+        </p>
+
+    </footer>
+
+
+</body>
+
+</html>
