@@ -143,7 +143,7 @@ async function loadTourCards() {
 
     try {
         const response = await fetch(
-            `http://127.0.0.1:8000/api/tours?category=${encodeURIComponent(category)}`
+            `/api/tours?category=${encodeURIComponent(category)}`
         );
 
         if (!response.ok) {
@@ -180,7 +180,7 @@ async function loadDestinations() {
     }
 
     try {
-        const response = await fetch("http://127.0.0.1:8000/api/destinations");
+        const response = await fetch("/api/destinations");
 
         if (!response.ok) {
             throw new Error(`HTTP error: ${response.status}`);
