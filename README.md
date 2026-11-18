@@ -116,7 +116,7 @@ For protected endpoints in `/docs`, provide the `X-Admin-Key` header using the v
 
 ## Important notes
 
-- PostgreSQL stores package and enquiry data. The website still uses the existing local image files in `New folder/`; the database stores image paths, not image binaries.
+- FastAPI serves the website from `public/`. PostgreSQL stores package and enquiry data, while the website uses local image files in `public/New folder/`; the database stores image paths, not image binaries.
 - This ZIP does not contain your real `.env` or any local database file.
 - Old records in the excluded SQLite `origin.db` are not automatically migrated. This code creates a new PostgreSQL `contact_messages` table. Keep a backup of any old database and migrate it separately if those enquiries matter.
 - The API is suitable for local development. Do not deploy it publicly with the simple `X-Admin-Key` setup as its only admin security. Production requires proper user authentication, authorization, HTTPS, rate limiting, backups, and schema migrations.

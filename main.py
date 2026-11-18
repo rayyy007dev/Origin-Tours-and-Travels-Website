@@ -131,11 +131,6 @@ app.add_middleware(
 )
 
 
-@app.get("/", tags=["Health"])
-def home():
-    return {"message": "ORIGIN backend is running"}
-
-
 @app.get("/api", tags=["Health"])
 def api_home():
     return {"message": "ORIGIN API is running"}
@@ -451,3 +446,6 @@ def get_services():
             "Tour planning",
         ]
     }
+
+
+app.frontend("/", directory="public", fallback=None)

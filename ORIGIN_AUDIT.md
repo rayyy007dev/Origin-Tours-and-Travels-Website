@@ -7,7 +7,7 @@
 ORIGIN is a travel and tour website project combining static HTML/CSS/JavaScript pages with a Python FastAPI backend. The repository contains a marketing-style website for domestic and international tours, as well as a backend API for contact messages and destination data.
 
 The project is not yet a clean single-stack app. It is a hybrid of:
-- static frontend pages such as `Index.html`, `tours.html`, `contact.html`, `about.html`, and similar files
+- static frontend pages under `public/`, such as `index.html`, `tours.html`, `contact.html`, `about.html`, and similar files
 - a FastAPI backend in `main.py`
 - a local SQLite database at `origin.db`
 - PostgreSQL-oriented logic in `main.py` that appears intended for a richer backend setup
@@ -41,7 +41,7 @@ This makes the project valuable for learning, but it also creates operational in
 ### Evidence
 - `main.py` imports `fastapi`, `sqlite3`, `psycopg`, `BaseModel`, and `CORSMiddleware`.
 - `main.py` defines routes such as `@app.post("/api/contact")`, `@app.get("/api/tours")`, `@app.get("/api/destinations")`, and `@app.delete("/api/Destinations/{destination_id}")`.
-- `Index.html` loads CSS through `link rel="stylesheet" href="style.css"` and uses JavaScript-driven tour cards.
+- `public/index.html` loads CSS through `link rel="stylesheet" href="style.css"` and uses JavaScript-driven tour cards.
 - `contact.html` sends a POST request to `http://127.0.0.1:8000/api/contact`.
 - `script.js` contains `loadTourCards()` and `loadDestinations()`, which call the backend API.
 
